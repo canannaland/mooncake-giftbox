@@ -378,6 +378,19 @@
   .story-note span { display: block; margin-top: 0.35rem; font-family: "Noto Sans TC", sans-serif; font-size: 0.88rem; color: var(--ink-soft); }
 
   /* ---------- Fillings ---------- */
+  #fillings { position: relative; overflow: hidden; }
+  #fillings::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('images/fillings-bg-mungbean.jpg'), url('images/fillings-bg-guava.jpg');
+    background-position: left top, right bottom;
+    background-size: 46% auto, 46% auto;
+    background-repeat: no-repeat, no-repeat;
+    opacity: 0.14;
+    mix-blend-mode: multiply;
+  }
+  #fillings .wrap { position: relative; z-index: 1; }
   .filling-block { margin-bottom: clamp(2.4rem, 5vw, 3.2rem); }
   .filling-block:last-child { margin-bottom: 0; }
   .filling-block h3 {
@@ -646,7 +659,7 @@
 
       <div class="story-step">
         <div class="story-icon story-icon-photo">
-          <img src="images/story-mom.jpg" alt="手工包餡照">
+          <img src="images/story-diligent.jpg" alt="手工熬煮內餡照">
         </div>
         <span class="zh-tag">手工熬煮</span>
         <h3>真材實料內餡</h3>
@@ -655,7 +668,7 @@
 
       <div class="story-step">
         <div class="story-icon story-icon-photo">
-          <img src="images/story-sibling.jpg" alt="職人品管照">
+          <img src="images/story-natural.jpg" alt="職人品管照">
         </div>
         <span class="zh-tag">自然清爽</span>
         <h3>少油減糖・無添加</h3>
