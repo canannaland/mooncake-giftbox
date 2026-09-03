@@ -335,19 +335,6 @@
   .story-note span { display: block; margin-top: 0.35rem; font-family: "Noto Sans TC", sans-serif; font-size: 0.88rem; color: var(--ink-soft); }
 
   /* ---------- Fillings ---------- */
-  #fillings { position: relative; overflow: hidden; }
-  #fillings::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url('images/fillings-bg-mungbean.jpg'), url('images/fillings-bg-guava.jpg');
-    background-position: left top, right bottom;
-    background-size: 46% auto, 46% auto;
-    background-repeat: no-repeat, no-repeat;
-    opacity: 0.14;
-    mix-blend-mode: multiply;
-  }
-  #fillings .wrap { position: relative; z-index: 1; }
   .filling-block { margin-bottom: clamp(2.4rem, 5vw, 3.2rem); }
   .filling-block:last-child { margin-bottom: 0; }
   .filling-block h3 {
