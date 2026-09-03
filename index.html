@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>迦南地月餅禮盒</title>
+<style>
+  :root {
+    --bg: #f3eedc;
+    --bg-alt: #ece4c9;
+    --card-bg: #fbf8ee;
+    --ink: #2e2a1f;
+    --ink-soft: #5b5340;
+    --moss: #47592f;
+    --moss-deep: #33421f;
+    --gold: #b8842a;
+    --gold-soft: #e4c77e;
+    --clay: #9a4b2e;
+    --line: rgba(46, 42, 31, 0.14);
+    --shadow: rgba(46, 42, 31, 0.16);
+    --hero-top: #1b2016;
+    --hero-bottom: #3a4a28;
+    --hero-ink: #f1ebd8;
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1b2016;
+      --bg-alt: #222819;
+      --card-bg: #232a1b;
+      --ink: #f1ebd8;
+      --ink-soft: #c7bfa4;
+      --moss: #8fae68;
+      --moss-deep: #6c8a4c;
+      --gold: #e0b24a;
+      --gold-soft: #6b551f;
+      --clay: #c97a52;
+      --line: rgba(241, 235, 216, 0.16);
+      --shadow: rgba(0, 0, 0, 0.5);
+      --hero-top: #0e120b;
+      --hero-bottom: #263218;
+      --hero-ink: #f1ebd8;
+      color-scheme: dark;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #1b2016;
+    --bg-alt: #222819;
+    --card-bg: #232a1b;
+    --ink: #f1ebd8;
+    --ink-soft: #c7bfa4;
+    --moss: #8fae68;
+    --moss-deep: #6c8a4c;
+    --gold: #e0b24a;
+    --gold-soft: #6b551f;
+    --clay: #c97a52;
+    --line: rgba(241, 235, 216, 0.16);
+    --shadow: rgba(0, 0, 0, 0.5);
+    --hero-top: #0e120b;
+    --hero-bottom: #263218;
+    --hero-ink: #f1ebd8;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: "Noto Serif TC", "Times New Norm", serif;
+    font-weight: 700;
+    text-wrap: balance;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  p { margin: 0; }
+  a { color: inherit; }
+
+  .eyebrow {
+    font-family: "Cormorant Garamond", "Noto Serif TC", serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 26px;
+    height: 1px;
+    background: var(--gold);
+    display: inline-block;
+  }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 clamp(1.25rem, 4vw, 3rem);
+  }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 0.85rem clamp(1.25rem, 4vw, 3rem);
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .brand-logo { height: 40px; width: auto; flex-shrink: 0; }
+
+  .brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+  .brand-text strong {
+    font-family: "Noto Serif TC", serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+  }
+  .brand-text span {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.9rem, 2vw, 1.8rem);
+    font-size: 0.92rem;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    padding: 0.3rem 0.1rem;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--moss); border-color: var(--gold); }
+
+  @media (max-width: 780px) {
+    .nav-links a.nav-hide-mobile { display: none; }
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-family: "Noto Serif TC", serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+    padding: 0.75rem 1.5rem;
+    border-radius: 3px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+  }
+  .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  .btn-gold {
+    background: linear-gradient(160deg, var(--gold-soft), var(--gold));
+    color: #2a1e08;
+    box-shadow: 0 8px 20px -8px var(--shadow);
+  }
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px var(--shadow); }
+
+  .btn-ghost {
+    background: transparent;
+    border-color: var(--line);
+    color: var(--ink);
+  }
+  .btn-ghost:hover { border-color: var(--moss); color: var(--moss); }
+
+  .btn-outline-light {
+    background: transparent;
+    border-color: rgba(241,235,216,0.5);
+    color: var(--hero-ink);
+  }
+  .btn-outline-light:hover { border-color: var(--gold-soft); color: var(--gold-soft); }
+
+  .btn-sm { padding: 0.6rem 1.1rem; font-size: 0.85rem; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    background: linear-gradient(180deg, var(--hero-top) 0%, var(--hero-bottom) 130%);
+    color: var(--hero-ink);
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: clamp(3.5rem, 9vw, 6.5rem) clamp(1.25rem, 4vw, 3rem) clamp(4rem, 8vw, 5.5rem);
+    display: grid;
+    gap: 1.6rem;
+    max-width: 660px;
+  }
+
+  .hero .eyebrow { color: var(--gold-soft); }
+  .hero .eyebrow::before { background: var(--gold-soft); }
+
+  .hero h1 {
+    color: var(--hero-ink);
+    font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+    line-height: 1.32;
+  }
+
+  .hero-sub {
+    font-family: "Noto Serif TC", serif;
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    color: var(--gold-soft);
+  }
+
+  .hero p.desc {
+    color: rgba(241,235,216,0.82);
+    max-width: 46ch;
+    font-size: 1rem;
+  }
+
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 0.4rem; }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
+    margin-top: 1.6rem;
+    font-size: 0.85rem;
+    color: rgba(241,235,216,0.65);
+    font-family: "Noto Serif TC", serif;
+  }
+
+  .hero-scene {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .hero-scene img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    opacity: 0; transition: opacity 1.6s ease;
+  }
+  .hero-scene img.is-active { opacity: 0.55; }
+  .hero-scene::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, var(--hero-top) 0%, var(--hero-top) 30%, transparent 68%),
+                linear-gradient(180deg, transparent 55%, var(--hero-bottom) 130%);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-inner { animation: rise 0.9s cubic-bezier(.2,.7,.3,1) both; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  }
+
+  /* ---------- Section shell ---------- */
+  section { padding: clamp(3.5rem, 8vw, 6rem) 0; }
+  .section-alt { background: var(--bg-alt); }
+  .section-head {
+    display: grid;
+    gap: 0.9rem;
+    max-width: 640px;
+    margin-bottom: clamp(2.2rem, 5vw, 3.2rem);
+  }
+  .section-head h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); }
+  .section-head p { color: var(--ink-soft); font-size: 1rem; max-width: 58ch; }
+
+  hr.rule {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 0;
+  }
+
+  /* ---------- Story ---------- */
+  .story-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .story-grid::before {
+    content: "";
+    position: absolute;
+    top: 68px;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: repeating-linear-gradient(90deg, var(--moss) 0 10px, transparent 10px 18px);
+    opacity: 0.55;
+  }
+  @media (max-width: 820px) {
+    .story-grid { grid-template-columns: 1fr; gap: 2.4rem; }
+    .story-grid::before { display: none; }
+  }
+
+  .story-step { position: relative; padding-right: 1.5rem; }
+  .story-icon {
+    width: 136px; height: 136px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 2;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 6px 16px -8px var(--shadow);
+  }
+  .story-icon svg { width: 64px; height: 64px; }
+  .story-icon-photo { overflow: hidden; padding: 0; }
+  .story-icon-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .story-step h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .story-step .zh-tag {
+    display: inline-block;
+    font-family: "Noto Serif TC", serif;
+    font-size: 1.15rem;
+    color: var(--moss);
+    margin-bottom: 0.5rem;
+  }
+  .story-step p { color: var(--ink-soft); font-size: 0.95rem; }
+
+  .story-note {
+    margin-top: clamp(2.4rem, 5vw, 3.5rem);
+    padding-top: clamp(2rem, 4vw, 2.6rem);
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.2rem;
+    align-items: start;
+  }
+  .story-note svg { width: 30px; height: 30px; flex-shrink: 0; color: var(--gold); }
+  .story-note p { font-family: "Noto Serif TC", serif; font-size: 1.05rem; color: var(--ink); }
+  .story-note span { display: block; margin-top: 0.35rem; font-family: "Noto Sans TC", sans-serif; font-size: 0.88rem; color: var(--ink-soft); }
+
+  /* ---------- Fillings ---------- */
+  .filling-block { margin-bottom: clamp(2.4rem, 5vw, 3.2rem); }
+  .filling-block:last-child { margin-bottom: 0; }
+  .filling-block h3 {
+    font-size: 1.1rem;
+    display: flex; align-items: baseline; gap: 0.6rem;
+    margin-bottom: 1.3rem;
+  }
+  .filling-block h3 small {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+
+  .swatch-row { display: flex; flex-wrap: wrap; gap: clamp(1.1rem, 3vw, 1.8rem); }
+  .swatch {
+    display: flex; flex-direction: column; align-items: center; gap: 0.55rem;
+    width: 96px;
+    text-align: center;
+  }
+  .swatch-disc {
+    width: 76px; height: 76px; border-radius: 50%;
+    position: relative;
+    box-shadow: inset 0 0 0 1px var(--line), 0 8px 16px -10px var(--shadow);
+  }
+  .swatch-disc::after {
+    content: "";
+    position: absolute; inset: 22%;
+    border-radius: 50%;
+    background: var(--yolk, #e0a93c);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.25);
+  }
+  .swatch-disc.has-photo { background: var(--card-bg); overflow: hidden; box-shadow: 0 8px 16px -10px var(--shadow); }
+  .swatch-disc.has-photo::after { content: none; }
+  .swatch-disc.has-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .swatch-label { font-size: 0.82rem; color: var(--ink-soft); }
+  .swatch-new {
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: var(--clay);
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+  }
+
+  .fruit-row { display: flex; flex-wrap: wrap; gap: clamp(1rem, 3vw, 1.6rem); }
+  .fruit-gem { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; width: 84px; text-align: center; }
+  .fruit-disc {
+    width: 58px; height: 58px; border-radius: 50%;
+    box-shadow: inset 0 -8px 14px rgba(0,0,0,0.18), inset 0 6px 10px rgba(255,255,255,0.25), 0 6px 14px -8px var(--shadow);
+    position: relative;
+  }
+  .fruit-disc::before {
+    content: "";
+    position: absolute; top: 14%; left: 22%;
+    width: 30%; height: 22%;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    filter: blur(1px);
+  }
+  .fruit-disc.has-photo { background: var(--card-bg); overflow: hidden; box-shadow: 0 6px 14px -8px var(--shadow); }
+  .fruit-disc.has-photo::before { content: none; }
+  .fruit-disc.has-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .fruit-label { font-size: 0.78rem; color: var(--ink-soft); }
+
+  /* ---------- Gift boxes ---------- */
+  .box-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: clamp(1.2rem, 2.5vw, 1.8rem);
+  }
+
+  .box-card {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .box-card:hover { transform: translateY(-4px); box-shadow: 0 16px 30px -16px var(--shadow); }
+
+  .box-art {
+    aspect-ratio: 4 / 3;
+    background: var(--bg-alt);
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px dashed var(--line);
+  }
+  .box-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .box-count {
+    position: absolute; top: 0.75rem; right: 0.75rem;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 0.72rem;
+    padding: 0.3rem 0.65rem;
+    font-family: "Noto Serif TC", serif;
+    color: var(--ink);
+  }
+
+  .box-body { padding: 1.3rem 1.4rem 1.5rem; display: grid; gap: 0.5rem; flex: 1; }
+  .box-body h3 { font-size: 1.15rem; }
+  .box-body .box-alias {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+  .box-body p.desc { color: var(--ink-soft); font-size: 0.9rem; margin-top: 0.2rem; }
+  .box-body .box-note {
+    margin-top: 0.6rem;
+    font-size: 0.78rem;
+    color: var(--moss);
+    border-top: 1px dashed var(--line);
+    padding-top: 0.6rem;
+  }
+
+  /* ---------- Videos ---------- */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: clamp(1.2rem, 2.5vw, 1.8rem);
+  }
+  .video-card {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .video-frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+  .video-frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; display: block; }
+  .video-body { padding: 1.1rem 1.3rem 1.3rem; }
+  .video-body h3 { font-size: 1.05rem; margin-bottom: 0.35rem; }
+  .video-body p { color: var(--ink-soft); font-size: 0.88rem; }
+
+  /* ---------- Quality ---------- */
+  .quality-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .quality-item {
+    background: var(--bg);
+    padding: 1.8rem 1.5rem;
+    display: grid;
+    gap: 0.8rem;
+  }
+  .quality-item svg { width: 30px; height: 30px; color: var(--moss); }
+  .quality-item h3 { font-size: 1rem; }
+  .quality-item p { color: var(--ink-soft); font-size: 0.86rem; }
+
+  /* ---------- Order ---------- */
+  .order-panel {
+    background: linear-gradient(155deg, var(--hero-top), var(--hero-bottom));
+    color: var(--hero-ink);
+    border-radius: 10px;
+    padding: clamp(2.4rem, 6vw, 4rem);
+    display: grid;
+    gap: 1.6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .order-panel .eyebrow { color: var(--gold-soft); }
+  .order-panel .eyebrow::before { background: var(--gold-soft); }
+  .order-panel h2 { color: var(--hero-ink); font-size: clamp(1.6rem, 3.4vw, 2.2rem); max-width: 22ch; }
+  .order-panel p.desc { color: rgba(241,235,216,0.82); max-width: 52ch; }
+  .order-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem; }
+  .order-contacts {
+    margin-top: 1.6rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid rgba(241,235,216,0.22);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+    font-size: 0.9rem;
+    color: rgba(241,235,216,0.85);
+  }
+  .order-contacts strong { color: var(--gold-soft); font-weight: 600; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 2.4rem 0 3rem;
+    border-top: 1px solid var(--line);
+  }
+  .footer-inner {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
+    font-size: 0.82rem; color: var(--ink-soft);
+  }
+  .footer-inner .brand { color: var(--ink-soft); }
+  .footer-inner .brand strong { color: var(--ink); }
+
+  ::selection { background: var(--gold-soft); color: #2a1e08; }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;600&family=Cormorant+Garamond:ital@1&display=swap">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <img src="images/logo-icon.png" alt="迦南地有機農場" class="brand-logo">
+      <span class="brand-text">
+        <strong>迦南地有機農場</strong>
+        <span>CANAANLAND ORGANIC FARM</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-hide-mobile" href="#story">核心理念</a>
+      <a class="nav-hide-mobile" href="#fillings">嚴選餡料</a>
+      <a href="#giftboxes">禮盒系列</a>
+      <a class="nav-hide-mobile" href="#quality">安心品質</a>
+      <a class="btn btn-gold btn-sm" href="https://docs.google.com/forms/d/e/1FAIpQLSd5P-mLnYycc526CjmtwCnEdaW024mlVtIyluIMqNVr8Fyr9Q/viewform" target="_blank" rel="noopener">我要預購</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-scene" aria-hidden="true">
+    <img src="images/hero.jpg" alt="" class="is-active">
+    <img src="images/hero-2.jpg" alt="">
+  </div>
+  <div class="hero-inner">
+    <span class="eyebrow">迦南地有機農場 · 中秋限定</span>
+    <h1>送上最自然的風味</h1>
+    <p class="desc">迦南地嚴選自產有機豆子、芋頭,手工熬煮真材實料內餡,並以自產水果搭配優質米粉,打造香酥水果米酥。堅持少油減糖、無化學添加物,給您最輕盈無負擔的清爽口感。</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="https://docs.google.com/forms/d/e/1FAIpQLSd5P-mLnYycc526CjmtwCnEdaW024mlVtIyluIMqNVr8Fyr9Q/viewform" target="_blank" rel="noopener">我要預購</a>
+      <a class="btn btn-outline-light" href="#giftboxes">認識禮盒系列</a>
+    </div>
+    <div class="hero-meta">
+      <span>電話 06-5908290</span>
+      <span>訂購專線 ・ LINE 0928693212</span>
+      <span>台南市新化區</span>
+    </div>
+  </div>
+</header>
+
+<section id="story">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">OUR PHILOSOPHY 核心理念</span>
+      <h2>回歸自然,送上最自然的風味</h2>
+      <p>迦南地有機農場位於台南新化知義里,由生態保育的溪流環抱,獨立區塊完全不受周圍農作噴藥或工業廢棄物波及汙染。上游承接知義林場清澈水源,土壤與水質皆經檢驗證實無污染,相當符合本農場無化肥、無農藥的有機經營理念。</p>
+    </div>
+
+    <div class="story-grid">
+      <div class="story-step">
+        <div class="story-icon story-icon-photo">
+          <img src="images/story-soybean.jpg" alt="有機大豆田">
+        </div>
+        <span class="zh-tag">自家嚴選</span>
+        <h3>有機豆子・芋頭</h3>
+        <p>嚴選自產有機豆子與芋頭,不施化肥、不噴農藥,從源頭把關食材的純粹與新鮮。</p>
+      </div>
+
+      <div class="story-step">
+        <div class="story-icon story-icon-photo">
+          <img src="images/story-mom.jpg" alt="手工包餡照">
+        </div>
+        <span class="zh-tag">手工熬煮</span>
+        <h3>真材實料內餡</h3>
+        <p>堅持手工熬煮,不用即溶粉料代工,一份一份把真材實料包進酥皮裡。</p>
+      </div>
+
+      <div class="story-step">
+        <div class="story-icon story-icon-photo">
+          <img src="images/story-sibling.jpg" alt="職人品管照">
+        </div>
+        <span class="zh-tag">自然清爽</span>
+        <h3>少油減糖・無添加</h3>
+        <p>並以自產水果搭配優質米粉,打造香酥水果米酥,少油減糖、無化學添加物,吃得輕盈無負擔。</p>
+      </div>
+    </div>
+
+    <div class="story-note">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.4"/>
+      </svg>
+      <p>自然,是最好的調味。<span>不添加化學香料與色素,讓豆子、芋頭與水果的本色本味,說出迦南地想傳遞的心意。</span></p>
+    </div>
+  </div>
+</section>
+
+<section id="fillings" class="section-alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">OUR FILLINGS 嚴選餡料</span>
+      <h2>酥皮裡,包著整片有機田</h2>
+      <p>從經典蛋黃酥到今年新推出的水果米酥,每一款餡料都由迦南地自家農場的有機作物製成,低糖低油,吃得到食材原本的味道。</p>
+    </div>
+
+    <div class="filling-block">
+      <h3>蛋黃酥系列 <small>Salted Egg Yolk Pastry</small></h3>
+      <div class="swatch-row">
+        <div class="swatch">
+          <div class="swatch-disc has-photo"><img src="images/filling-crisp-taro.png" alt="芋頭蛋黃酥"></div>
+          <span class="swatch-label">芋頭</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-disc has-photo"><img src="images/filling-egg-mungbean.png" alt="綠豆蛋黃酥"></div>
+          <span class="swatch-label">綠豆</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-disc has-photo"><img src="images/filling-egg-redbean.png" alt="紅豆蛋黃酥"></div>
+          <span class="swatch-label">紅豆</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-disc has-photo"><img src="images/filling-egg-blackbean.png" alt="黑豆蛋黃酥"></div>
+          <span class="swatch-label">黑豆</span>
+          <span class="swatch-new">NEW 新口味</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="filling-block">
+      <h3>中秋酥點 <small>Seasonal Pastries</small></h3>
+      <div class="swatch-row">
+        <div class="swatch">
+          <div class="swatch-disc has-photo"><img src="images/filling-crisp-taro.png" alt="芋頭酥"></div>
+          <span class="swatch-label">芋頭酥</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-disc has-photo"><img src="images/filling-crisp-mungbean.png" alt="綠豆酥"></div>
+          <span class="swatch-label">綠豆酥</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-disc has-photo"><img src="images/filling-crisp-longanwalnut.png" alt="桂圓核桃月餅"></div>
+          <span class="swatch-label">桂圓核桃月餅</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-disc has-photo"><img src="images/filling-crisp-greenbeanpuff.png" alt="綠豆椪"></div>
+          <span class="swatch-label">綠豆椪</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="filling-block">
+      <h3>水果米酥 <small>Fruit Rice Crisp · New Arrivals</small></h3>
+      <div class="fruit-row">
+        <div class="fruit-gem"><div class="fruit-disc has-photo"><img src="images/filling-fruit-jaboticaba.png" alt="樹葡萄米酥"></div><span class="fruit-label">樹葡萄</span></div>
+        <div class="fruit-gem"><div class="fruit-disc has-photo"><img src="images/filling-fruit-strawberry.png" alt="草莓米酥"></div><span class="fruit-label">草莓</span></div>
+        <div class="fruit-gem"><div class="fruit-disc has-photo"><img src="images/filling-fruit-mulberry.png" alt="桑葚米酥"></div><span class="fruit-label">桑葚</span></div>
+        <div class="fruit-gem"><div class="fruit-disc has-photo"><img src="images/filling-fruit-pineapple.png" alt="鳳梨米酥"></div><span class="fruit-label">鳳梨</span></div>
+        <div class="fruit-gem"><div class="fruit-disc has-photo"><img src="images/filling-fruit-mango.png" alt="芒果米酥"></div><span class="fruit-label">芒果</span></div>
+        <div class="fruit-gem"><div class="fruit-disc has-photo"><img src="images/filling-fruit-guava.png" alt="紅心芭樂米酥"></div><span class="fruit-label">芭樂</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="giftboxes">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">GIFT COLLECTIONS 禮盒系列</span>
+      <h2>五款禮盒,合意的心意剛剛好</h2>
+      <p>依人數與場合挑選盒型與入數,實際內容、口味搭配與客製化選項,歡迎透過預購表單或電話與我們確認。</p>
+    </div>
+
+    <div class="box-grid">
+      <div class="box-card" style="--accent:#b8842a;">
+        <div class="box-art">
+          <img src="images/box-key.jpg" alt="KEY 禮盒實品照">
+        </div>
+        <span class="box-count">12 入</span>
+        <div class="box-body">
+          <span class="box-alias">Signature Collection</span>
+          <h3>KEY 禮盒</h3>
+          <p class="desc">分享大器,滿滿誠意的整盒心意,是送禮自用兩相宜的經典之選。</p>
+          <p class="box-note">口味內容請洽預購表單</p>
+        </div>
+      </div>
+
+      <div class="box-card" style="--accent:#9a4b2e;">
+        <div class="box-art">
+          <img src="images/box-fruit.jpg" alt="水果酥禮盒實品照">
+        </div>
+        <span class="box-count">8 入</span>
+        <div class="box-body">
+          <span class="box-alias">New Season Flavours</span>
+          <h3>水果酥禮盒</h3>
+          <p class="desc">集結今年新推出的水果米酥口味,清爽解膩,是中秋送禮的新鮮提案。</p>
+          <p class="box-note">口味內容請洽預購表單</p>
+        </div>
+      </div>
+
+      <div class="box-card" style="--accent:#47592f;">
+        <div class="box-art">
+          <img src="images/box-moon.jpg" alt="騰空一月禮盒實品照">
+        </div>
+        <span class="box-count">8 入</span>
+        <div class="box-body">
+          <span class="box-alias">Under the Full Moon</span>
+          <h3>騰空一月禮盒</h3>
+          <p class="desc">中秋月圓,酥香隨手可得,輕巧份量最適合小家庭與辦公室分享。</p>
+          <p class="box-note">口味內容請洽預購表單</p>
+        </div>
+      </div>
+
+      <div class="box-card" style="--accent:#b8842a;">
+        <div class="box-art">
+          <img src="images/box-custom.jpg" alt="一路由您禮盒實品照">
+        </div>
+        <span class="box-count">6 入</span>
+        <div class="box-body">
+          <span class="box-alias">Your Own Selection</span>
+          <h3>一路由您禮盒</h3>
+          <p class="desc">口味任您搭配,依人數與喜好自由組合,彈性最高的自選禮盒。</p>
+          <p class="box-note">口味內容請洽預購表單</p>
+        </div>
+      </div>
+
+      <div class="box-card" style="--accent:#9a4b2e;">
+        <div class="box-art">
+          <img src="images/box-prosperity.jpg" alt="王來禮盒實品照">
+        </div>
+        <span class="box-count">6 入</span>
+        <div class="box-body">
+          <span class="box-alias">Prosperity Box</span>
+          <h3>王來禮盒</h3>
+          <p class="desc">取「旺來」諧音,吉祥好意頭都在裡頭,送長輩、送客戶都合適。</p>
+          <p class="box-note">口味內容請洽預購表單</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="videos">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">REAL REACTIONS 真實反應</span>
+      <h2>吃過的人,都是這個表情</h2>
+      <p>與其說我們的,不如親眼看看第一次吃到的反應——這才是最誠實的推薦。</p>
+    </div>
+
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-frame">
+          <video src="videos/kids-first-bite.mp4" controls preload="metadata" playsinline title="小朋友的第一口有機月餅反應"></video>
+        </div>
+        <div class="video-body">
+          <h3>小朋友的第一口,反應超真實</h3>
+          <p>迦南地農場中秋禮盒</p>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <video src="videos/one-bite-reaction.mp4" controls preload="metadata" playsinline title="一口咬下全部笑瘋了"></video>
+        </div>
+        <div class="video-body">
+          <h3>一口咬下,全部笑瘋了</h3>
+          <p>迦南地農場中秋禮盒</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="quality" class="section-alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">WHY CANAANLAND 安心品質</span>
+      <h2>從產地到餐桌,只做一件事:讓您安心</h2>
+      <p>本農場堅持以伊甸農法從事耕種,自製適合不同作物的多樣性有效微生物有機質肥,搭配炭化稻殼、忌避植物與天敵防治病蟲害,土壤並定期送檢。在飽受農藥與化肥污染的台灣土地上,堅守這一方農耕淨土。</p>
+    </div>
+
+    <div class="quality-grid">
+      <div class="quality-item">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 19c8 1 13-4 14-14-9 0-14 5-14 14Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M5 19c2-4 5-7 9-10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <h3>自家有機原料</h3>
+        <p>豆類、芋頭與水果皆來自迦南地自家有機農場,以伊甸農法栽培,不施化肥、不噴農藥。</p>
+      </div>
+      <div class="quality-item">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.5l7 3v6c0 5-3 8.5-7 10-4-1.5-7-5-7-10v-6l7-3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 12.5l2 2 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>雙重認證把關</h3>
+        <p>台南縣政府合法登記農場,台灣農場協會正式會員,並通過產銷履歷與有機檢驗雙重認證。</p>
+      </div>
+      <div class="quality-item">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c3 4 6 7.5 6 11a6 6 0 1 1-12 0c0-3.5 3-7 6-11Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <h3>低糖・低油</h3>
+        <p>依古法調整配方比例,吃得到餡料本身的自然香甜。</p>
+      </div>
+      <div class="quality-item">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>無添加防腐劑</h3>
+        <p>純手工製作,不添加人工防腐劑與色素,吃原味也吃安心。</p>
+      </div>
+      <div class="quality-item">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2v20M4.5 6.5l15 11M19.5 6.5l-15 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <h3>冷藏冷凍保存</h3>
+        <p>若未即時食用,建議冷藏或冷凍保存,留住現烤的完整風味。</p>
+      </div>
+      <div class="quality-item">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.5"/><path d="M12 3.5c-3 3-4.5 6-4.5 8.5S9 17 12 20.5c3-3.5 4.5-6.5 4.5-9S15 6.5 12 3.5Z" stroke="currentColor" stroke-width="1.3"/></svg>
+        <h3>中秋限定手作</h3>
+        <p>磨豆、炒餡皆費工耗時,僅於中秋前夕限量手工製作。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="order">
+  <div class="wrap">
+    <div class="order-panel">
+      <span class="eyebrow">PRE-ORDER 立即預購</span>
+      <h2>中秋將至,把家的味道說給重要的人聽。</h2>
+      <p class="desc">手工限量製作,建議提早預購。點擊下方按鈕填寫預購表單,選擇禮盒與數量,我們會依訂單順序與您確認口味、出貨時間與付款方式。</p>
+      <div class="order-actions">
+        <a class="btn btn-gold" href="https://docs.google.com/forms/d/e/1FAIpQLSd5P-mLnYycc526CjmtwCnEdaW024mlVtIyluIMqNVr8Fyr9Q/viewform" target="_blank" rel="noopener">我要預購 → 前往表單登記</a>
+        <a class="btn btn-outline-light" href="tel:0928693212">直接致電訂購</a>
+      </div>
+      <div class="order-contacts">
+        <span><strong>電話：</strong>06-5908290</span>
+        <span><strong>訂購專線：</strong>0928693212</span>
+        <span><strong>LINE：</strong>搜尋 0928693212</span>
+        <span><strong>地址：</strong>台南市新化區知義里新和庄111-1號</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="brand"><strong>迦南地有機農場</strong> CANAANLAND ORGANIC FARM</span>
+    <span>台南市新化區知義里新和庄111-1號 ・ 06-5908290</span>
+    <span>© 2026 迦南地有機農場</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var slides = document.querySelectorAll('.hero-scene img');
+    if (slides.length < 2) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var i = 0;
+    setInterval(function () {
+      slides[i].classList.remove('is-active');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('is-active');
+    }, 5000);
+  })();
+</script>
+
+</body>
+</html>
