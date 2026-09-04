@@ -201,12 +201,11 @@
   .hero-inner {
     position: relative;
     z-index: 2;
-    max-width: 1120px;
-    margin: 0 auto;
+    margin: 0 auto 0 0;
     padding: clamp(3.5rem, 9vw, 6.5rem) clamp(1.25rem, 4vw, 3rem) clamp(4rem, 8vw, 5.5rem);
     display: grid;
     gap: 1.6rem;
-    max-width: 660px;
+    max-width: 560px;
   }
 
   .hero h1 {
@@ -267,13 +266,13 @@
     width: 100%; height: 100%; object-fit: cover; display: block;
     opacity: 0; transition: opacity 1.6s ease;
   }
-  .hero-scene img.is-active { opacity: 0.7; }
+  .hero-scene img.is-active { opacity: 0.85; }
   .hero-scene::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(100deg, var(--hero-top) 0%, var(--hero-top) 30%, transparent 68%),
-                linear-gradient(180deg, transparent 55%, var(--hero-bottom) 130%);
+    background: linear-gradient(100deg, var(--hero-top) 0%, var(--hero-top) 12%, transparent 42%),
+                linear-gradient(180deg, transparent 78%, var(--hero-bottom) 130%);
   }
 
   @media (prefers-reduced-motion: no-preference) {
