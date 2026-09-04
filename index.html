@@ -239,6 +239,24 @@
     font-family: "Noto Serif TC", serif;
   }
 
+  .hero-dots {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1.8rem;
+  }
+  .hero-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    padding: 0;
+    border: 1px solid rgba(46,42,31,0.35);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  }
+  .hero-dot:hover { border-color: var(--clay); }
+  .hero-dot.is-active { background: var(--clay); border-color: var(--clay); transform: scale(1.15); }
+  .hero-dot:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
   .hero-scene {
     position: absolute;
     inset: 0;
@@ -673,6 +691,7 @@
   <div class="hero-scene" aria-hidden="true">
     <img src="images/hero.jpg" alt="" class="is-active">
     <img src="images/hero-2.jpg" alt="">
+    <img src="images/hero-3.jpg" alt="">
   </div>
   <div class="hero-inner">
     <span class="eyebrow">迦南地有機農場 · 中秋限定</span>
@@ -686,6 +705,11 @@
       <span>電話 06-5908290</span>
       <span>訂購專線 ・ LINE 0928693212</span>
       <span>台南市新化區</span>
+    </div>
+    <div class="hero-dots" role="tablist" aria-label="主視覺輪播切換">
+      <button type="button" class="hero-dot is-active" role="tab" aria-selected="true" aria-label="第 1 張照片" data-hero-slide="0"></button>
+      <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="第 2 張照片" data-hero-slide="1"></button>
+      <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="第 3 張照片" data-hero-slide="2"></button>
     </div>
   </div>
 </header>
@@ -1030,14 +1054,42 @@
 <script>
   (function () {
     var slides = document.querySelectorAll('.hero-scene img');
+    var dots = document.querySelectorAll('.hero-dot');
     if (slides.length < 2) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var i = 0;
-    setInterval(function () {
+    var timer = null;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function show(index) {
       slides[i].classList.remove('is-active');
-      i = (i + 1) % slides.length;
+      if (dots[i]) { dots[i].classList.remove('is-active'); dots[i].setAttribute('aria-selected', 'false'); }
+      i = index;
       slides[i].classList.add('is-active');
-    }, 5000);
+      if (dots[i]) { dots[i].classList.add('is-active'); dots[i].setAttribute('aria-selected', 'true'); }
+    }
+
+    function next() { show((i + 1) % slides.length); }
+
+    function startAuto() {
+      if (reduceMotion) return;
+      stopAuto();
+      timer = setInterval(next, 5000);
+    }
+    function stopAuto() {
+      if (timer) clearInterval(timer);
+      timer = null;
+    }
+
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        var idx = parseInt(dot.getAttribute('data-hero-slide'), 10);
+        if (idx === i) return;
+        show(idx);
+        startAuto();
+      });
+    });
+
+    startAuto();
   })();
 </script>
 
