@@ -183,11 +183,12 @@
   .btn-ghost:hover { border-color: var(--moss); color: var(--moss); }
 
   .btn-outline-light {
-    background: transparent;
+    background: color-mix(in srgb, var(--card-bg) 65%, transparent);
+    backdrop-filter: blur(6px);
     border-color: rgba(46,42,31,0.32);
     color: var(--hero-ink);
   }
-  .btn-outline-light:hover { border-color: var(--clay); color: var(--clay); }
+  .btn-outline-light:hover { background: color-mix(in srgb, var(--card-bg) 85%, transparent); border-color: var(--clay); color: var(--clay); }
 
   .btn-sm { padding: 0.6rem 1.1rem; font-size: 0.85rem; }
 
