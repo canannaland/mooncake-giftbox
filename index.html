@@ -410,6 +410,104 @@
   .fruit-disc.has-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.15); }
   .fruit-label { font-size: 0.78rem; color: var(--ink-soft); }
 
+  .swatch[data-nutrition], .fruit-gem[data-nutrition] {
+    cursor: pointer;
+    outline: none;
+    border-radius: 10px;
+    transition: transform 0.2s ease;
+  }
+  .swatch[data-nutrition]:hover, .fruit-gem[data-nutrition]:hover { transform: translateY(-3px); }
+  .swatch[data-nutrition]:hover .swatch-disc, .fruit-gem[data-nutrition]:hover .fruit-disc { box-shadow: 0 12px 20px -10px var(--shadow); }
+  .swatch[data-nutrition]:focus-visible, .fruit-gem[data-nutrition]:focus-visible { box-shadow: 0 0 0 3px var(--gold-soft); }
+
+  /* ---------- Nutrition modal ---------- */
+  .nutri-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+  .nutri-modal.is-open { display: flex; }
+  .nutri-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(54, 47, 34, 0.55);
+    backdrop-filter: blur(2px);
+  }
+  .nutri-modal-panel {
+    position: relative;
+    background: var(--card-bg);
+    border-radius: 14px;
+    max-width: 760px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.4);
+  }
+  @media (max-width: 680px) {
+    .nutri-modal-panel { grid-template-columns: 1fr; }
+  }
+  .nutri-modal-close {
+    position: absolute;
+    top: 0.7rem; right: 0.7rem;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--card-bg);
+    color: var(--ink);
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+  }
+  .nutri-modal-close:hover { color: var(--clay); border-color: var(--clay); }
+  .nutri-modal-photo {
+    background: var(--bg-alt);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+  .nutri-modal-photo img { width: 100%; max-width: 220px; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 20px -10px var(--shadow); }
+  .nutri-modal-info { padding: 2rem 1.8rem; display: grid; gap: 1rem; align-content: start; }
+  .nutri-modal-info h3 { font-size: 1.3rem; }
+  .nutri-modal-meta { font-size: 0.85rem; color: var(--ink-soft); }
+  .nutri-table { border: 1.5px solid var(--ink); font-size: 0.85rem; }
+  .nutri-table-head {
+    text-align: center;
+    font-weight: 700;
+    padding: 0.5rem;
+    border-bottom: 1.5px solid var(--ink);
+    letter-spacing: 0.15em;
+  }
+  .nutri-table-serving {
+    padding: 0.5rem 0.7rem;
+    border-bottom: 1.5px solid var(--ink);
+    line-height: 1.6;
+  }
+  .nutri-table table { width: 100%; border-collapse: collapse; }
+  .nutri-table thead th {
+    text-align: right;
+    font-weight: 400;
+    padding: 0.4rem 0.7rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .nutri-table thead th:first-child { text-align: left; }
+  .nutri-table tbody td {
+    padding: 0.32rem 0.7rem;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .nutri-table tbody td:first-child { text-align: left; white-space: normal; }
+  .nutri-table tbody tr:not(:last-child) td { border-bottom: 1px dotted var(--line); }
+  .nutri-modal-ingredients, .nutri-modal-allergen { font-size: 0.8rem; color: var(--ink-soft); line-height: 1.6; }
+  .nutri-modal-allergen { color: var(--clay); }
+
   /* ---------- Gift boxes ---------- */
   .box-grid {
     display: grid;
@@ -650,19 +748,19 @@
     <div class="filling-block">
       <h3>蛋黃酥系列 <small>Salted Egg Yolk Pastry</small></h3>
       <div class="swatch-row">
-        <div class="swatch">
+        <div class="swatch" data-nutrition="taro-egg" tabindex="0" role="button" aria-haspopup="dialog">
           <div class="swatch-disc has-photo"><img src="images/filling-egg-taro.png" alt="芋頭蛋黃酥"></div>
           <span class="swatch-label">芋頭</span>
         </div>
-        <div class="swatch">
+        <div class="swatch" data-nutrition="mungbean-egg" tabindex="0" role="button" aria-haspopup="dialog">
           <div class="swatch-disc has-photo"><img src="images/filling-egg-mungbean.png" alt="綠豆蛋黃酥"></div>
           <span class="swatch-label">綠豆</span>
         </div>
-        <div class="swatch">
+        <div class="swatch" data-nutrition="redbean-egg" tabindex="0" role="button" aria-haspopup="dialog">
           <div class="swatch-disc has-photo"><img src="images/filling-egg-redbean.png" alt="紅豆蛋黃酥"></div>
           <span class="swatch-label">紅豆</span>
         </div>
-        <div class="swatch">
+        <div class="swatch" data-nutrition="blackbean-egg" tabindex="0" role="button" aria-haspopup="dialog">
           <div class="swatch-disc has-photo"><img src="images/filling-egg-blackbean.png" alt="黑豆蛋黃酥"></div>
           <span class="swatch-label">黑豆</span>
           <span class="swatch-new">NEW 新口味</span>
@@ -673,19 +771,19 @@
     <div class="filling-block">
       <h3>中秋酥點 <small>Seasonal Pastries</small></h3>
       <div class="swatch-row">
-        <div class="swatch">
+        <div class="swatch" data-nutrition="taro-crisp" tabindex="0" role="button" aria-haspopup="dialog">
           <div class="swatch-disc has-photo"><img src="images/filling-crisp-taro.png" alt="芋頭酥"></div>
           <span class="swatch-label">芋頭酥</span>
         </div>
-        <div class="swatch">
+        <div class="swatch" data-nutrition="mungbean-crisp" tabindex="0" role="button" aria-haspopup="dialog">
           <div class="swatch-disc has-photo"><img src="images/filling-crisp-mungbean.png" alt="綠豆酥"></div>
           <span class="swatch-label">綠豆酥</span>
         </div>
-        <div class="swatch">
+        <div class="swatch" data-nutrition="longan-walnut" tabindex="0" role="button" aria-haspopup="dialog">
           <div class="swatch-disc has-photo"><img src="images/filling-crisp-longanwalnut.png" alt="桂圓核桃月餅"></div>
           <span class="swatch-label">桂圓核桃月餅</span>
         </div>
-        <div class="swatch">
+        <div class="swatch" data-nutrition="mungbean-puff" tabindex="0" role="button" aria-haspopup="dialog">
           <div class="swatch-disc has-photo"><img src="images/filling-crisp-greenbeanpuff.png" alt="綠豆椪"></div>
           <span class="swatch-label">綠豆椪</span>
         </div>
@@ -695,12 +793,12 @@
     <div class="filling-block">
       <h3>水果米酥 <small>Fruit Rice Crisp · New Arrivals</small></h3>
       <div class="fruit-row">
-        <div class="fruit-gem"><div class="fruit-disc has-photo"><img src="images/filling-fruit-jaboticaba.png" alt="樹葡萄米酥"></div><span class="fruit-label">樹葡萄</span></div>
-        <div class="fruit-gem"><div class="fruit-disc has-photo"><img src="images/filling-fruit-strawberry.png" alt="草莓米酥"></div><span class="fruit-label">草莓</span></div>
-        <div class="fruit-gem"><div class="fruit-disc has-photo"><img src="images/filling-fruit-mulberry.png" alt="桑葚米酥"></div><span class="fruit-label">桑葚</span></div>
-        <div class="fruit-gem"><div class="fruit-disc has-photo"><img src="images/filling-fruit-pineapple.png" alt="鳳梨米酥"></div><span class="fruit-label">鳳梨</span></div>
-        <div class="fruit-gem"><div class="fruit-disc has-photo"><img src="images/filling-fruit-mango.png" alt="芒果米酥"></div><span class="fruit-label">芒果</span></div>
-        <div class="fruit-gem"><div class="fruit-disc has-photo"><img src="images/filling-fruit-guava.png" alt="紅心芭樂米酥"></div><span class="fruit-label">芭樂</span></div>
+        <div class="fruit-gem" data-nutrition="jaboticaba" tabindex="0" role="button" aria-haspopup="dialog"><div class="fruit-disc has-photo"><img src="images/filling-fruit-jaboticaba.png" alt="樹葡萄米酥"></div><span class="fruit-label">樹葡萄</span></div>
+        <div class="fruit-gem" data-nutrition="strawberry" tabindex="0" role="button" aria-haspopup="dialog"><div class="fruit-disc has-photo"><img src="images/filling-fruit-strawberry.png" alt="草莓米酥"></div><span class="fruit-label">草莓</span></div>
+        <div class="fruit-gem" data-nutrition="mulberry" tabindex="0" role="button" aria-haspopup="dialog"><div class="fruit-disc has-photo"><img src="images/filling-fruit-mulberry.png" alt="桑葚米酥"></div><span class="fruit-label">桑葚</span></div>
+        <div class="fruit-gem" data-nutrition="pineapple" tabindex="0" role="button" aria-haspopup="dialog"><div class="fruit-disc has-photo"><img src="images/filling-fruit-pineapple.png" alt="鳳梨米酥"></div><span class="fruit-label">鳳梨</span></div>
+        <div class="fruit-gem" data-nutrition="mango" tabindex="0" role="button" aria-haspopup="dialog"><div class="fruit-disc has-photo"><img src="images/filling-fruit-mango.png" alt="芒果米酥"></div><span class="fruit-label">芒果</span></div>
+        <div class="fruit-gem" data-nutrition="guava" tabindex="0" role="button" aria-haspopup="dialog"><div class="fruit-disc has-photo"><img src="images/filling-fruit-guava.png" alt="紅心芭樂米酥"></div><span class="fruit-label">芭樂</span></div>
       </div>
     </div>
   </div>
@@ -912,6 +1010,23 @@
   </div>
 </footer>
 
+<div class="nutri-modal" id="nutriModal" aria-hidden="true">
+  <div class="nutri-modal-backdrop" data-nutri-close></div>
+  <div class="nutri-modal-panel" role="dialog" aria-modal="true" aria-labelledby="nutriModalTitle">
+    <button type="button" class="nutri-modal-close" data-nutri-close aria-label="關閉">&times;</button>
+    <div class="nutri-modal-photo">
+      <img id="nutriModalImg" src="" alt="">
+    </div>
+    <div class="nutri-modal-info">
+      <h3 id="nutriModalTitle"></h3>
+      <p class="nutri-modal-meta" id="nutriModalMeta"></p>
+      <div class="nutri-table" id="nutriModalTable"></div>
+      <p class="nutri-modal-ingredients" id="nutriModalIngredients"></p>
+      <p class="nutri-modal-allergen" id="nutriModalAllergen"></p>
+    </div>
+  </div>
+</div>
+
 <script>
   (function () {
     var slides = document.querySelectorAll('.hero-scene img');
@@ -923,6 +1038,176 @@
       i = (i + 1) % slides.length;
       slides[i].classList.add('is-active');
     }, 5000);
+  })();
+</script>
+
+<script>
+  (function () {
+    var NUTRITION = {
+      'taro-egg': {
+        name: '芋頭蛋黃酥', img: 'images/filling-egg-taro.png',
+        serving: '50公克', servings: '1',
+        rows: [168,336, 6,12, 8,16, 1,2, 0,0, 18,36, 9,18, 165,330],
+        ingredients: '麵粉(台灣)、迦南地芋頭(台灣)、蛋黃(台灣)、蔗糖(台灣)、麥芽糖(台灣)、迦南地糙米粉(台灣)、葵花油(義大利)、安佳奶油(紐西蘭)、迦南地紫地瓜(台灣)、鹽(台灣)',
+        allergen: '小麥、奶類、蛋類'
+      },
+      'mungbean-egg': {
+        name: '綠豆蛋黃酥', img: 'images/filling-egg-mungbean.png',
+        serving: '50公克', servings: '1',
+        rows: [173,346, 5,10, 9,18, 1,2, 0,0, 18,36, 10,20, 165,330],
+        ingredients: '麵粉(台灣)、迦南地綠豆(台灣)、蛋黃(台灣)、迦南地糙米粉(台灣)、葵花油(義大利)、安佳奶油(紐西蘭)、蔗糖(台灣)、麥芽糖(台灣)、鹽(台灣)、抹茶粉(台灣)',
+        allergen: '小麥、奶類、蛋類'
+      },
+      'redbean-egg': {
+        name: '紅豆蛋黃酥', img: 'images/filling-egg-redbean.png',
+        serving: '50公克', servings: '1',
+        rows: [213,426, 5,10, 9,18, 1,2, 0,0, 28,56, 10,20, 165,330],
+        ingredients: '麵粉(台灣)、迦南地紅豆(台灣)、迦南地無毒蛋(台灣)、蔗糖(台灣)、麥芽糖(台灣)、迦南地糙米粉(台灣)、葵花油(義大利)、安佳奶油(紐西蘭)、鹽(台灣)、紅麴粉(台灣)',
+        allergen: '小麥、奶類、蛋類'
+      },
+      'blackbean-egg': {
+        name: '黑豆蛋黃酥', img: 'images/filling-egg-blackbean.png',
+        serving: '50公克', servings: '1',
+        rows: [223,446, 6,12, 11,22, 1,2, 0,0, 25,50, 10,20, 165,330],
+        ingredients: '麵粉(台灣)、迦南地黑豆(台灣)、迦南地無毒蛋(台灣)、迦南地糙米粉(台灣)、葵花油(義大利)、安佳奶油(紐西蘭)、蔗糖(台灣)、麥芽糖(台灣)、鹽(台灣)',
+        allergen: '小麥、奶類、蛋類、豆類'
+      },
+      'taro-crisp': {
+        name: '芋頭酥', img: 'images/filling-crisp-taro.png',
+        serving: '50公克', servings: '1',
+        rows: [151,302, 4,8, 7,14, 1,2, 0,0, 18,36, 9,18, 13,26],
+        ingredients: '麵粉(台灣)、迦南地芋頭(台灣)、蔗糖(台灣)、麥芽糖(台灣)、迦南地糙米粉(台灣)、葵花油(義大利)、安佳奶油(紐西蘭)、迦南地紫地瓜(台灣)、鹽(台灣)',
+        allergen: '小麥、奶類'
+      },
+      'mungbean-crisp': {
+        name: '綠豆酥', img: 'images/filling-crisp-mungbean.png',
+        serving: '50公克', servings: '1',
+        rows: [156,312, 3,6, 8,16, 1,2, 0,0, 18,36, 10,20, 12,24],
+        ingredients: '麵粉(台灣)、迦南地綠豆(台灣)、蔗糖(台灣)、麥芽糖(台灣)、迦南地蓬萊粉(台灣)、葵花油(義大利)、安佳奶油(紐西蘭)、鹽(台灣)、抹茶粉(台灣)',
+        allergen: '小麥、奶類'
+      },
+      'longan-walnut': {
+        name: '桂圓核桃月餅', img: 'images/filling-crisp-longanwalnut.png',
+        serving: '50公克', servings: '1',
+        rows: [211,422, 10,20, 7,14, 1,2, 0,0, 27,54, 10,20, 25,50],
+        ingredients: '麵粉(台灣)、迦南地茶豆(台灣)、核桃(美國)、迦南地桂圓(台灣)、砂糖(台灣)、麥芽糖(台灣)、迦南地米粉(台灣)、葵花油(義大利)、安佳奶油(紐西蘭)、迦南地無毒蛋(台灣)、安佳奶粉(紐西蘭)、鹽(台灣)',
+        allergen: '小麥、奶類、蛋類、豆類、堅果'
+      },
+      'mungbean-puff': {
+        name: '綠豆椪', img: 'images/filling-crisp-greenbeanpuff.png',
+        serving: '50公克', servings: '1',
+        rows: [184,368, 7,14, 4,8, 1,2, 0,0, 30,60, 10,20, 25,50],
+        ingredients: '麵粉(台灣)、迦南地綠豆(台灣)、蔗糖(台灣)、葵花油(義大利)、麥芽糖(台灣)、豬肉(台灣)、安佳奶油(紐西蘭)、油蔥(台灣)、白芝麻(台灣)、鹽(台灣)',
+        allergen: '小麥、奶類、芝麻'
+      },
+      'jaboticaba': {
+        name: '樹葡萄米酥', img: 'images/filling-fruit-jaboticaba.png',
+        serving: '50公克', servings: '1',
+        rows: [173,346, 2,4, 5,10, 1,2, 0,0, 30,60, 15,30, 25,50],
+        ingredients: '迦南地冬瓜(台灣)、蔗糖(台灣)、迦南地米粉(台灣)、麵粉(台灣)、迦南地嘉寶果(台灣)、迦南地洛神(台灣)、葵花油(義大利)、安佳奶油(紐西蘭)、迦南地無毒蛋(台灣)、安佳奶粉(紐西蘭)、安佳起司粉(紐西蘭)、檸檬(台灣)、鹽(台灣)、竹碳粉(台灣)',
+        allergen: '小麥、奶類、蛋類'
+      },
+      'strawberry': {
+        name: '草莓米酥', img: 'images/filling-fruit-strawberry.png',
+        serving: '50公克', servings: '1',
+        rows: [191,382, 2,4, 7,14, 1,2, 0,0, 30,60, 10,20, 25,50],
+        ingredients: '迦南地冬瓜(台灣)、蔗糖(台灣)、迦南地米粉(台灣)、麵粉(台灣)、迦南地草莓(台灣)、葵花油(義大利)、安佳奶油(紐西蘭)、迦南地無毒蛋(台灣)、迦南地洛神(台灣)、安佳奶粉(紐西蘭)、安佳起司粉(紐西蘭)、檸檬(台灣)、鹽(台灣)、甜菜根粉(台灣)',
+        allergen: '小麥、奶類、蛋類'
+      },
+      'mulberry': {
+        name: '桑葚米酥', img: 'images/filling-fruit-mulberry.png',
+        serving: '50公克', servings: '1',
+        rows: [173,346, 2,4, 5,10, 1,2, 0,0, 30,60, 15,30, 25,50],
+        ingredients: '迦南地冬瓜(台灣)、蔗糖(台灣)、迦南地糙米粉(台灣)、麵粉(台灣)、迦南地桑椹(台灣)、迦南地洛神(台灣)、葵花油(義大利)、安佳奶油(紐西蘭)、迦南地無毒蛋(台灣)、安佳奶粉(紐西蘭)、安佳起司粉(紐西蘭)、檸檬(台灣)、鹽(台灣)、抹茶粉(台灣)',
+        allergen: '小麥、奶類、蛋類'
+      },
+      'pineapple': {
+        name: '鳳梨米酥', img: 'images/filling-fruit-pineapple.png',
+        serving: '50公克', servings: '1',
+        rows: [191,382, 2,4, 7,14, 1,2, 0,0, 30,60, 10,20, 25,50],
+        ingredients: '金鑽鳳梨(台灣)、蔗糖(台灣)、迦南地米粉(台灣)、麵粉(台灣)、葵花油(義大利)、安佳奶油(紐西蘭)、迦南地無毒蛋(台灣)、安佳奶粉(紐西蘭)、安佳起司粉(紐西蘭)、檸檬(台灣)、鹽(台灣)',
+        allergen: '小麥、奶類、蛋類'
+      },
+      'mango': {
+        name: '芒果米酥', img: 'images/filling-fruit-mango.png',
+        serving: '50公克', servings: '1',
+        rows: [191,382, 2,4, 7,14, 1,2, 0,0, 30,60, 10,20, 25,50],
+        ingredients: '迦南地冬瓜(台灣)、蘆穗(台灣)、迦南地米粉(台灣)、麵粉(台灣)、葵花油(義大利)、安佳奶油(紐西蘭)、迦南地無毒蛋(台灣)、迦南地芒果(台灣)、迦南地黃金果(台灣)、安佳奶粉(紐西蘭)、安佳起司粉(紐西蘭)、檸檬(台灣)、鹽(台灣)',
+        allergen: '小麥、奶類、蛋類'
+      },
+      'guava': {
+        name: '紅心芭樂米酥', img: 'images/filling-fruit-guava.png',
+        serving: '50公克', servings: '1',
+        rows: [195,390, 2,4, 7,14, 1,2, 0,0, 31,62, 10,20, 25,50],
+        ingredients: '迦南地冬瓜(台灣)、蔗糖(台灣)、迦南地米粉(台灣)、麵粉(台灣)、迦南地紅心芭樂(台灣)、葵花油(義大利)、安佳奶油(紐西蘭)、迦南地無毒蛋(台灣)、迦南地洛神(台灣)、安佳奶粉(紐西蘭)、安佳起司粉(紐西蘭)、檸檬(台灣)、鹽(台灣)、紫薯粉(台灣)',
+        allergen: '小麥、奶類、蛋類'
+      }
+    };
+
+    var LABELS = ['熱量,大卡', '蛋白質,公克', '脂肪,公克', '　飽和脂肪,公克', '　反式脂肪,公克', '碳水化合物,公克', '　糖,公克', '鈉,毫克'];
+
+    var modal = document.getElementById('nutriModal');
+    var imgEl = document.getElementById('nutriModalImg');
+    var titleEl = document.getElementById('nutriModalTitle');
+    var metaEl = document.getElementById('nutriModalMeta');
+    var tableEl = document.getElementById('nutriModalTable');
+    var ingEl = document.getElementById('nutriModalIngredients');
+    var allergenEl = document.getElementById('nutriModalAllergen');
+    var lastFocused = null;
+
+    function buildTable(d) {
+      var bodyRows = '';
+      for (var i = 0; i < LABELS.length; i++) {
+        var parts = LABELS[i].split(',');
+        var label = parts[0], unit = parts[1];
+        var perServing = d.rows[i * 2];
+        var per100 = d.rows[i * 2 + 1];
+        bodyRows += '<tr><td>' + label + '</td><td>' + perServing + unit + '</td><td>' + per100 + unit + '</td></tr>';
+      }
+      return '<div class="nutri-table-head">營養標示</div>' +
+        '<div class="nutri-table-serving">每一份量 ' + d.serving + '<br>本包裝含 ' + d.servings + ' 份</div>' +
+        '<table><thead><tr><th></th><th>每份</th><th>每100公克</th></tr></thead><tbody>' + bodyRows + '</tbody></table>';
+    }
+
+    function openNutri(key, trigger) {
+      var d = NUTRITION[key];
+      if (!d) return;
+      imgEl.src = d.img;
+      imgEl.alt = d.name;
+      titleEl.textContent = d.name;
+      metaEl.textContent = '淨重 ' + d.serving + '．冷藏保存';
+      tableEl.innerHTML = buildTable(d);
+      ingEl.textContent = '成分：' + d.ingredients;
+      allergenEl.textContent = '過敏原：本產品包含' + d.allergen;
+      lastFocused = trigger || document.activeElement;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      modal.querySelector('.nutri-modal-close').focus();
+    }
+
+    function closeNutri() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    document.querySelectorAll('[data-nutrition]').forEach(function (el) {
+      el.addEventListener('click', function () { openNutri(el.getAttribute('data-nutrition'), el); });
+      el.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openNutri(el.getAttribute('data-nutrition'), el);
+        }
+      });
+    });
+    document.querySelectorAll('[data-nutri-close]').forEach(function (el) {
+      el.addEventListener('click', closeNutri);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeNutri();
+    });
   })();
 </script>
 
